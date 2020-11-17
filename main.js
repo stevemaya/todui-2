@@ -21,50 +21,43 @@ Your options are:
 
 `;
 
-const add = (todo) => {
+const add = (str) => {
   todos.push({
-    text:todo,
+    text: str,
     isComplete: false,
     priority: 2
   })
   printTodos();
   interface.question(menu, handleMenu);
 }
-const handleMenu = function(cmd) {
-  if (cmd === '6') {
-    console.log('Quitting!')
-    interface.close();
-  } else if (cmd === '5') {
-    console.clear();
-    console.log("This feature is under construction, check back later!");
-    console.log('Type 6 to quit');
-    interface.question(menu, handleMenu);
-  }else if (cmd === '4') {
-    console.clear();
-    console.log("This feature is under construction, check back later!");
-    console.log('Type 6 to quit');
-    interface.question(menu, handleMenu);
-  }else if (cmd === '3') {
-    console.clear();
-    console.log("This feature is under construction, check back later!");
-    console.log('Type 6 to quit');
-    interface.question(menu, handleMenu);
-  }else if (cmd === '2') {
-    console.clear();
-    console.log("This feature is under construction, check back later!");
-    console.log('Type 6 to quit');
-    interface.question(menu, handleMenu);
-  } else if (cmd === '1') {
-    console.clear();
-    console.log("What should go on your todo list?\n", add);
-    interface.question(menu, handleMenu);
-  }
-};
+
 const printTodos = () => {
-  console.log("Here are your todos:")
+  console.log("Here are your todos:");
   for (const todo of todos) {
     console.log(`* ${todo.text}`);
   }
+};
+
+const handleMenu = cmd => {
+  switch(cmd) {
+    case '1':
+      console.clear();
+      interface.question('What should go on your todo list?\n', add);
+      break;
+    case '2':
+    case '3':
+    case '4':
+    case '5':
+      console.clear();
+      console.log('This feature is under construction, check back later!')
+      console.log('Type 6 to quit!');
+      interface.question(menu, handleMenu);
+      break;
+    case '6': 
+      console.log('Quitting!')
+      interface.close();
+      break;
+  };
 };
 
 console.clear();
