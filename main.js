@@ -63,7 +63,7 @@ const handleMenu = function(cmd) {
 const printTodos = () => {
   console.log("Here are your todos:")
   for (const todo of todos) {
-    console.log(todo.text);
+    console.log(`* ${todo.text}`);
   }
 };
 
